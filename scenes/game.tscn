@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=3 uid="uid://bqx6j42ig51hm"]
+
+[ext_resource type="Script" uid="uid://qw3pwm1i80op" path="res://scenes/game.gd" id="1_d332n"]
+[ext_resource type="PackedScene" uid="uid://mgbdltlgdiiu" path="res://scenes/ui/main_menu.tscn" id="3_t8fld"]
+[ext_resource type="PackedScene" uid="uid://c28inhg2cbbj" path="res://scenes/bullet_factory.tscn" id="3_uv5tp"]
+[ext_resource type="PackedScene" uid="uid://c7h15n4nygixn" path="res://scenes/enemies_handler.tscn" id="4_kswt4"]
+[ext_resource type="PackedScene" uid="uid://gbltcyjqb7jj" path="res://scenes/ui/run_failed_menu.tscn" id="4_yvkmu"]
+[ext_resource type="PackedScene" uid="uid://my8bb6mhwp1t" path="res://scenes/ui/run_won_menu.tscn" id="5_68xcf"]
+[ext_resource type="PackedScene" uid="uid://bwwl7sx64c0yg" path="res://scenes/ui/hud.tscn" id="5_a1qxy"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_d332n")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("5_a1qxy")]
+visible = false
+
+[node name="MainMenu" parent="CanvasLayer" instance=ExtResource("3_t8fld")]
+
+[node name="RunFailedMenu" parent="CanvasLayer" instance=ExtResource("4_yvkmu")]
+visible = false
+
+[node name="RunWonMenu" parent="CanvasLayer" instance=ExtResource("5_68xcf")]
+visible = false
+
+[node name="BulletFactory" parent="." instance=ExtResource("3_uv5tp")]
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="EnemiesHandler" parent="." instance=ExtResource("4_kswt4")]
+position = Vector2(0, 8)
+
+[connection signal="run_failed" from="." to="." method="_on_run_failed"]
+[connection signal="run_won" from="." to="." method="_on_run_won"]
+[connection signal="quiited" from="CanvasLayer/MainMenu" to="." method="_on_main_menu_quiited"]
+[connection signal="run_started" from="CanvasLayer/MainMenu" to="." method="_on_main_menu_run_started"]
+[connection signal="main_menu" from="CanvasLayer/RunFailedMenu" to="." method="_on_run_failed_menu_main_menu"]
+[connection signal="main_menu" from="CanvasLayer/RunWonMenu" to="." method="_on_run_won_menu_main_menu"]

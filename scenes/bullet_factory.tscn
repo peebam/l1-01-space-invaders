@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c28inhg2cbbj"]
+
+[ext_resource type="Script" uid="uid://bds1glsvjsxms" path="res://scenes/bullet_factory.gd" id="1_258vh"]
+
+[node name="BulletFactory" type="Node2D"]
+script = ExtResource("1_258vh")
+enemy_bullet_collision_mask = 2
+player_bullet_collision_mask = 1

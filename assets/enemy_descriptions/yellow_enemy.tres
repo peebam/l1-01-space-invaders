@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="EnemyDescription" load_steps=8 format=3 uid="uid://k5x7ngy6tbsi"]
+
+[ext_resource type="Script" uid="uid://bv66dhfox4ssr" path="res://resources/enemy_description.gd" id="1_gjqul"]
+[ext_resource type="Texture2D" uid="uid://c111f5hjwcc86" path="res://assets/sprites/enemies.png" id="2_2w3wm"]
+[ext_resource type="Texture2D" uid="uid://wxg682s2sv6i" path="res://assets/sprites/explosion.png" id="3_ojlcp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dguay"]
+atlas = ExtResource("2_2w3wm")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqh6t"]
+atlas = ExtResource("2_2w3wm")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rlffj"]
+atlas = ExtResource("3_ojlcp")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o4mfj"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dguay")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gqh6t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rlffj")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_gjqul")
+sprite_frames = SubResource("SpriteFrames_o4mfj")
